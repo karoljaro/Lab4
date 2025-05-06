@@ -27,14 +27,14 @@ show_help() {
 
 while [[ "$#" -gt 0 ]]; do
     case $1 in
-        --date)
+        --date | -d)
             show_date
             ;;
-         --logs)
+         --logs | -l)
             create_logs "$2"
             shift
             ;;
-         --help)
+         --help | -h)
             show_help
             ;;
         *)
