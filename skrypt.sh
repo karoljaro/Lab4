@@ -49,9 +49,13 @@ create_error_files() {
 
 show_help() {
   echo "Dostępne flagi:"
-  echo "  --date        Wyświetla dzisiejszą datę"
-  echo "  --logs [N]    Tworzy N plików logx.txt (domyślnie 100)."
-  echo "  --help        Wyświetla tę pomoc"
+  echo "  --date, -d          Wyświetla dzisiejszą datę"
+  echo "  --logs [N], -l [N]  Tworzy N plików logx.txt (domyślnie 100)."
+  echo "                      N musi być liczbą całkowitą."
+  echo "  --error [N], -e [N] Tworzy N katalogów errorx z plikami errorx.txt (domyślnie 100)."
+  echo "                      N musi być liczbą całkowitą."
+  echo "  --init              Klonuje repozytorium i ustawia ścieżkę w PATH (dla bieżącej sesji)."
+  echo "  --help, -h          Wyświetla tę pomoc"
 }
 
 while [[ "$#" -gt 0 ]]; do
