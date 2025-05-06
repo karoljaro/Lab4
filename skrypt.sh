@@ -31,6 +31,22 @@ initialize_repo() {
   fi
 }
 
+create_error_files() {
+  local num_errors=${1:-100} # Domyślnie 100, jeśli argument nie jest podany
+  script_name=$(basename "$0")
+  current_date=$(date)
+  echo "Tworzenie ${num_errors} plików error..."
+  for i in $(seq 1 "${num_errors}"); do
+    dir_name="error${i}"
+    mkdir -p "${dir_name}"
+    filename="${dir_name}/error${i}.txt"
+    echo "Nazwa pliku: error${i}.txt" > "${filename}"
+    echo "Nazwa skryptu: ${script_name}" >> "${filename}"
+    echo "Data utworzenia: ${current_date}" >> "${filename}"
+    echo "Utworzono plik: ${filename} w katalogu ${dir_name}"
+  done
+}
+
 show_help() {
   echo "Dostępne flagi:"
   echo "  --date        Wyświetla dzisiejszą datę"
@@ -49,6 +65,9 @@ while [[ "$#" -gt 0 ]]; do
             ;;
          --init)
             initialize_repo
+            ;;
+         --error | -e)
+            create_error_files "$2"
             ;;
          --help | -h)
             show_help
