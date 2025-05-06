@@ -5,9 +5,11 @@ show_date() {
 }
 
 create_logs() {
+  local num_files=${1:-100} # Domyślnie 100, jeśli argument nie jest podany
   script_name=$(basename "$0")
   current_date=$(date)
-  for i in $(seq 1 100); do
+  echo "Tworzenie ${num_files} plików log..."
+  for i in $(seq 1 "${num_files}"); do
     filename="log${i}.txt"
     echo "Nazwa pliku: ${filename}" > "${filename}"
     echo "Nazwa skryptu: ${script_name}" >> "${filename}"
@@ -22,7 +24,8 @@ while [[ "$#" -gt 0 ]]; do
             show_date
             ;;
          --logs)
-            create_logs
+            create_logs "$2"
+            shift
             ;;
         *)
             echo "Nieznana flaga: $1"
