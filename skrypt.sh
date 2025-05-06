@@ -18,6 +18,13 @@ create_logs() {
   done
 }
 
+show_help() {
+  echo "Dostępne flagi:"
+  echo "  --date        Wyświetla dzisiejszą datę"
+  echo "  --logs [N]    Tworzy N plików logx.txt (domyślnie 100)."
+  echo "  --help        Wyświetla tę pomoc"
+}
+
 while [[ "$#" -gt 0 ]]; do
     case $1 in
         --date)
@@ -26,6 +33,9 @@ while [[ "$#" -gt 0 ]]; do
          --logs)
             create_logs "$2"
             shift
+            ;;
+         --help)
+            show_help
             ;;
         *)
             echo "Nieznana flaga: $1"
